@@ -1,19 +1,22 @@
+import { Telegraf } from "telegraf";
+import express from "express";
+
+// 1. Create bot (this must be FIRST)
+const bot = new Telegraf(process.env.BOT_TOKEN);
+
+// 2. /start handler
 bot.start((ctx) => {
   ctx.reply(
-    "🏟️ **Welcome to CryptoStadium!**\n\n" +
+    "🏟️ *Welcome to CryptoStadium!*\n\n" +
     "A fast 1v1 crypto strategy game where every round is a mind game.\n\n" +
-
-    "🔥 **How it works:**\n" +
-    "• Each match has **3 rounds**\n" +
-    "• Every round gives you **3 random crypto networks**\n" +
+    "🔥 *How it works:*\n" +
+    "• 3 rounds per match\n" +
+    "• Each round gives random crypto networks\n" +
     "• Allocate your hash power wisely\n" +
     "• Outsmart your opponent and score more points\n\n" +
-
-    "🚧 **Early Access Notice**\n" +
-    "This is the **initial version** and it's **free to play for now**.\n" +
-    "Your feedback will directly shape the final launch.\n\n" +
-
-    "Ready to test your strategy?",
+    "🚧 *Early Access*\n" +
+    "This is the initial version and it's free for now. Your feedback helps us improve!\n\n" +
+    "Ready to play?",
     {
       parse_mode: "Markdown",
       reply_markup: {
@@ -26,3 +29,13 @@ bot.start((ctx) => {
     }
   );
 });
+
+// 3. Keep-alive server for Railway
+const app = express();
+app.get("/", (req, res) => res.send("CryptoStadium Bot is running"));
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Web server running");
+});
+
+// 4. Launch bot
+bot.launch();
