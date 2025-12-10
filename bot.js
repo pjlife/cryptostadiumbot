@@ -21,7 +21,7 @@ bot.start((ctx) => {
       parse_mode: "Markdown",
       reply_markup: {
         inline_keyboard: [
-          [{ text: "⚡ Play CryptoStadium", url: "https://t.me/cryptostadiumbot/app" }],
+          [{ text: "⚡ Play CryptoStadium", url: "https://t.me/cryptostadiumbot" }],
           [{ text: "📢 Join Channel", url: "https://t.me/cryptostadiumnews" }],
           [{ text: "👥 Join Community", url: "https://t.me/crypto_stadium" }]
         ]
